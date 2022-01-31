@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>Main title</h1>
-    <h2>guest page</h2>
+    <div class="container">
+      <h1>Main title</h1>
+      <a href="/admin">Vai alla pagina admin</a>
+    </div>
   </div>
 </template>
 

@@ -102,6 +102,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "App"
 });
@@ -599,9 +601,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", [_vm._v("Main title")]),
-      _vm._v(" "),
-      _c("h2", [_vm._v("guest page")]),
+      _c("div", { staticClass: "container" }, [
+        _c("h1", [_vm._v("Main title")]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "/admin" } }, [
+          _vm._v("Vai alla pagina admin"),
+        ]),
+      ]),
     ])
   },
 ]
