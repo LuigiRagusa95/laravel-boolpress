@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <div class="list-group">
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-primary mb-3" href="{{ route('admin.posts.create') }}">Add New</a>
+        </div>
         @foreach ($posts as $post)
         <a href="{{ route('admin.posts.show', $post->id) }}"
             class="list-group-item list-group-item-action flex-column align-items-start">
