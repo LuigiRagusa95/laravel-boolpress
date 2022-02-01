@@ -17,5 +17,6 @@
         </a>
         @endforeach
     </div>
+    <div class="d-flex mt-3">{{ $posts->links() }}</div>
 </div>
 @endsection
