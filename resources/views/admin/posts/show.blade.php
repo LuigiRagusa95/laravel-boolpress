@@ -14,7 +14,14 @@
                     </span>
                 </small>
                 <p class="flex mt-3">{{ $post->text }}</p>
-                <p class="flex mt-3">@if ($post->category_id) {{ $post->category->name }} @else Uncategorized @endif</p>
+                <p class="flex mt-3">
+                    @if ($post->category_id)
+                    <a class href="{{ route('admin.categories.show', $post->category->id) }}">{{$post->category->name
+                        }}</a>
+                    @else
+                    Uncategorized
+                    @endif
+                </p>
             </article>
         </div>
     </div>

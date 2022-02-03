@@ -14,7 +14,7 @@
                 <small>{{ $post->created_at->diffForHumans() }}</small>
             </div>
             <p class="mb-1">{{ $post->text }}</p>
-            <p class="mb-1">{{ $post->category }}</p>
+            <p class="mb-1">@if ($post->category) {{ $post->category->name }} @else Uncategorized @endif </p>
         </a>
         @endforeach
     </div>
