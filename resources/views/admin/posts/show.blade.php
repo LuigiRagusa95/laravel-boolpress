@@ -14,7 +14,7 @@
                     </span>
                 </small>
                 <p class="flex mt-3">{{ $post->text }}</p>
-                <p class="flex mt-3">{{ $post->category->name }}</p>
+                <p class="flex mt-3">@if ($post->category_id) {{ $post->category->name }} @else Uncategorized @endif</p>
             </article>
         </div>
     </div>
