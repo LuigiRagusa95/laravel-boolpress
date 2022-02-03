@@ -20,6 +20,19 @@
                     <div class="d-flex text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-1">
+                    <label class="form-label" for="category_id"></label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        <option value="">Uncategorized</option>
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" @if ($category->id == old('category_id')) selected @endif
+                            >{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                    <div class="d-flex text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
                 <div class="mt-3"><button type="submit" class="btn btn-primary">Create</button></div>
             </form>
         </div>

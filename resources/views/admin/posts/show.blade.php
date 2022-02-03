@@ -14,6 +14,7 @@
                     </span>
                 </small>
                 <p class="flex mt-3">{{ $post->text }}</p>
+                <p class="flex mt-3">{{ $post->category->name }}</p>
             </article>
         </div>
     </div>
