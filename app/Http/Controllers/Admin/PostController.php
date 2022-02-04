@@ -14,8 +14,9 @@ class PostController extends Controller
 
     public function index()
     {
+        $tags = Tag::all();
         $posts = Post::paginate(5);
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts', 'tags'));
     }
 
     public function create()

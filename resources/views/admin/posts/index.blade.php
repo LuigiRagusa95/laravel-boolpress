@@ -14,7 +14,19 @@
                 <small>{{ $post->created_at->diffForHumans() }}</small>
             </div>
             <p class="mb-1">{{ $post->text }}</p>
-            <p class="mb-1">@if ($post->category) {{ $post->category->name }} @else Uncategorized @endif </p>
+            <p class="m-0 mt-1">
+                <strong>Category: </strong>
+                @if ($post->category) {{ $post->category->name }} @else Uncategorized @endif
+            </p>
+            <div class="d-block mt-1">
+                <span><strong>Tags: </strong></span>
+                @if (!$post->tags->isEmpty())
+                @foreach ($post->tags as $tag)
+                <span class="badge bg-primary text-white">{{$tag->name}}</span>
+                @endforeach
+                @else <span>No tags for this post</span>
+                @endif
+            </div>
         </a>
         @endforeach
     </div>
