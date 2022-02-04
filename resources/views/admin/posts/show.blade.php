@@ -13,8 +13,17 @@
                         <a class="link" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
                     </span>
                 </small>
-                <p class="flex mt-3">{{ $post->text }}</p>
-                <p class="flex mt-3">
+                <div class="d-block mt-3">
+                    <span><strong>Tags: </strong></span>
+                    @if (!$post->tags->isEmpty())
+                    @foreach ($post->tags as $tag)
+                    <span class="badge bg-primary text-white">{{$tag->name}}</span>
+                    @endforeach
+                    @else <p>No tags for this post</p>
+                    @endif
+                </div>
+                <p class="d-flex mt-3">{{ $post->text }}</p>
+                <p class="d-flex mt-3">
                     @if ($post->category_id)
                     <a class href="{{ route('admin.categories.show', $post->category->id) }}">{{$post->category->name
                         }}</a>

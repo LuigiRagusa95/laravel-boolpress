@@ -36,9 +36,11 @@
                 <div class="mt-4">
                     @foreach ($tags as $tag)
                     <span class="d-inline-block mr-3">
-                        <input type="checkbox" name="tag[]" id="tag-{{$tag->id}}" @if(in_array($tag->id, old('tags',
+                        <input type="checkbox" name="tags[]" id="tag-{{$loop->iteration}}" value="{{$tag->id}}"
+                            @if(in_array($tag->id,
+                        old('tags',
                         []))) checked @endif />
-                        <label for="tag-{{$tag->id}}">{{ $tag->name }}</label>
+                        <label for="tag-{{$loop->iteration}}">{{ $tag->name }}</label>
                     </span>
                     @endforeach
                 </div>

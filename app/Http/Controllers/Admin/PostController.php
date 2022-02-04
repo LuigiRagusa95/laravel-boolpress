@@ -44,6 +44,10 @@ class PostController extends Controller
         $post->fill($data);
         $post->save();
 
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->attach($data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', $post->id);
     }
 
@@ -100,7 +104,8 @@ class PostController extends Controller
         return [
             'title' => 'required|max:100',
             'text' => 'required',
-            'category_id' => 'nullable'
+            'category_id' => 'nullable',
+            'tags' => 'nullable|exists:tags,id'
         ];
     }
 }
