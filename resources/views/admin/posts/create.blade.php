@@ -33,6 +33,15 @@
                     <div class="d-flex text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mt-4">
+                    @foreach ($tags as $tag)
+                    <span class="d-inline-block mr-3">
+                        <input type="checkbox" name="tag[]" id="tag-{{$tag->id}}" @if(in_array($tag->id, old('tags',
+                        []))) checked @endif />
+                        <label for="tag-{{$tag->id}}">{{ $tag->name }}</label>
+                    </span>
+                    @endforeach
+                </div>
                 <div class="mt-3"><button type="submit" class="btn btn-primary">Create</button></div>
             </form>
         </div>

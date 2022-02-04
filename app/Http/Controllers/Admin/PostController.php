@@ -7,6 +7,7 @@ use App\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -19,8 +20,9 @@ class PostController extends Controller
 
     public function create()
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     public function store(Request $request)
