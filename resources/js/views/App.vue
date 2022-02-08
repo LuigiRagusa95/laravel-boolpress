@@ -11,7 +11,7 @@
                     :key="`post-${post.id}`"
                 >
                     <h1 class="h3">{{ post.title }}</h1>
-                    <p class="text-small">{{ post.created_at }}</p>
+                    <p class="text-small">{{ formatDate(post.created_at) }}</p>
                     <p class="text-normal">{{ post.text }}</p>
                 </article>
             </section>
@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 import Loader from "../components/Loader.vue";
 
 export default {
@@ -40,6 +41,9 @@ export default {
             axios
                 .get("http://127.0.0.1:8000/api/posts")
                 .then((res) => (this.posts = res.data.data));
+        },
+        formatDate(date) {
+            return moment(new Date(date).getTime()).fromNow();
         },
     },
 };
