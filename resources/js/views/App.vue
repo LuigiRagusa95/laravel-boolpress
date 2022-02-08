@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <h1 class="mt-2">Posts</h1>
-            <section class="px-5 py-2">
+            <section class="mb-3 px-5 py-2">
                 <div v-if="!posts" class="loader-container"><Loader /></div>
                 <article
                     v-else
@@ -14,6 +14,22 @@
                     <p class="text-small">{{ formatDate(post.created_at) }}</p>
                     <p class="text-normal">{{ post.text }}</p>
                 </article>
+            </section>
+            <section class="mb-3">
+                <button
+                    class="btn btn-primary"
+                    :disabled="pagination.current === 1"
+                    @click="getPosts(pagination.current - 1)"
+                >
+                    Prev
+                </button>
+                <button
+                    class="btn btn-primary"
+                    :disabled="pagination.current === pagination.last"
+                    @click="getPosts(pagination.current + 1)"
+                >
+                    Next
+                </button>
             </section>
             <!-- <a href="/admin">Vai alla pagina admin</a> -->
         </div>
@@ -31,16 +47,23 @@ export default {
     data() {
         return {
             posts: null,
+            pagination: {},
         };
     },
     created() {
         this.getPosts();
     },
     methods: {
-        getPosts() {
+        getPosts(page = 1) {
             axios
-                .get("http://127.0.0.1:8000/api/posts")
-                .then((res) => (this.posts = res.data.data));
+                .get(`http://127.0.0.1:8000/api/posts?page=${page}`)
+                .then((res) => {
+                    this.posts = res.data.data;
+                    this.pagination = {
+                        current: res.data.current_page,
+                        last: res.data.last_page,
+                    };
+                });
         },
         formatDate(date) {
             return moment(new Date(date).getTime()).fromNow();

@@ -1954,6 +1954,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1964,7 +1980,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "App",
   data: function data() {
     return {
-      posts: null
+      posts: null,
+      pagination: {}
     };
   },
   created: function created() {
@@ -1974,8 +1991,13 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts").then(function (res) {
-        return _this.posts = res.data.data;
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts?page=".concat(page)).then(function (res) {
+        _this.posts = res.data.data;
+        _this.pagination = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
       });
     },
     formatDate: function formatDate(date) {
@@ -24764,7 +24786,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "section",
-        { staticClass: "px-5 py-2" },
+        { staticClass: "mb-3 px-5 py-2" },
         [
           !_vm.posts
             ? _c("div", { staticClass: "loader-container" }, [_c("Loader")], 1)
@@ -24790,6 +24812,36 @@ var render = function () {
         ],
         2
       ),
+      _vm._v(" "),
+      _c("section", { staticClass: "mb-3" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { disabled: _vm.pagination.current === 1 },
+            on: {
+              click: function ($event) {
+                return _vm.getPosts(_vm.pagination.current - 1)
+              },
+            },
+          },
+          [_vm._v("\n                Prev\n            ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { disabled: _vm.pagination.current === _vm.pagination.last },
+            on: {
+              click: function ($event) {
+                return _vm.getPosts(_vm.pagination.current + 1)
+              },
+            },
+          },
+          [_vm._v("\n                Next\n            ")]
+        ),
+      ]),
     ]),
   ])
 }
