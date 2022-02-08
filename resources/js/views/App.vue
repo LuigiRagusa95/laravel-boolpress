@@ -15,13 +15,26 @@
                     <p class="text-normal">{{ post.text }}</p>
                 </article>
             </section>
-            <section class="mb-3">
+            <section class="mb-3" v-if="posts">
                 <button
                     class="btn btn-primary"
                     :disabled="pagination.current === 1"
                     @click="getPosts(pagination.current - 1)"
                 >
                     Prev
+                </button>
+                <button
+                    class="btn mr-2"
+                    :key="`page-${i}`"
+                    v-for="i in pagination.last"
+                    @click="getPosts((pagination.current = i))"
+                    :class="
+                        pagination.current === i
+                            ? 'btn-primary'
+                            : 'btn-primary disabled'
+                    "
+                >
+                    {{ i }}
                 </button>
                 <button
                     class="btn btn-primary"

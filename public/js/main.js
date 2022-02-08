@@ -1970,6 +1970,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -24813,35 +24826,64 @@ var render = function () {
         2
       ),
       _vm._v(" "),
-      _c("section", { staticClass: "mb-3" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { disabled: _vm.pagination.current === 1 },
-            on: {
-              click: function ($event) {
-                return _vm.getPosts(_vm.pagination.current - 1)
-              },
-            },
-          },
-          [_vm._v("\n                Prev\n            ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: { disabled: _vm.pagination.current === _vm.pagination.last },
-            on: {
-              click: function ($event) {
-                return _vm.getPosts(_vm.pagination.current + 1)
-              },
-            },
-          },
-          [_vm._v("\n                Next\n            ")]
-        ),
-      ]),
+      _vm.posts
+        ? _c(
+            "section",
+            { staticClass: "mb-3" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { disabled: _vm.pagination.current === 1 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(_vm.pagination.current - 1)
+                    },
+                  },
+                },
+                [_vm._v("\n                Prev\n            ")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.pagination.last, function (i) {
+                return _c(
+                  "button",
+                  {
+                    key: "page-" + i,
+                    staticClass: "btn mr-2",
+                    class:
+                      _vm.pagination.current === i
+                        ? "btn-primary"
+                        : "btn-primary disabled",
+                    on: {
+                      click: function ($event) {
+                        _vm.getPosts((_vm.pagination.current = i))
+                      },
+                    },
+                  },
+                  [_vm._v("\n                " + _vm._s(i) + "\n            ")]
+                )
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: {
+                    disabled: _vm.pagination.current === _vm.pagination.last,
+                  },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(_vm.pagination.current + 1)
+                    },
+                  },
+                },
+                [_vm._v("\n                Next\n            ")]
+              ),
+            ],
+            2
+          )
+        : _vm._e(),
     ]),
   ])
 }
