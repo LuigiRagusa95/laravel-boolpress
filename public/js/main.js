@@ -1950,9 +1950,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Loader: _components_Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   name: "App",
   data: function data() {
     return {
@@ -1967,7 +1972,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts").then(function (res) {
-        return _this.posts = res.data;
+        return _this.posts = res.data.data;
       });
     }
   }
@@ -1987,7 +1992,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.loader[data-v-e79ec684] {\n    width: 24px;\n    height: 24px;\n    border-radius: 999999px;\n    border: 2px solid #c0defb;\n    border-right-color: #3e8ae4;\n}\n", ""]);
+exports.push([module.i, "\n.loader[data-v-e79ec684] {\n    width: 24px;\n    height: 24px;\n    border-radius: 999999px;\n    border: 2px solid #c0defb;\n    border-right-color: #3e8ae4;\n    -webkit-animation: spin-data-v-e79ec684 500ms linear infinite;\n            animation: spin-data-v-e79ec684 500ms linear infinite;\n}\n@-webkit-keyframes spin-data-v-e79ec684 {\nto {\n        transform: rotate(1turn);\n}\n}\n@keyframes spin-data-v-e79ec684 {\nto {\n        transform: rotate(1turn);\n}\n}\n", ""]);
 
 // exports
 
@@ -2006,7 +2011,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.text-small {\r\n    font-size: 12px;\r\n    line-height: 16px;\n}\n.text-normal {\r\n    font-size: 16px;\r\n    line-height: 24px;\n}\r\n", ""]);
+exports.push([module.i, "\n.text-small {\r\n    font-size: 12px;\r\n    line-height: 16px;\n}\n.text-normal {\r\n    font-size: 16px;\r\n    line-height: 24px;\n}\n.loader-container {\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100vh;\r\n    display: flex;\r\n    position: absolute;\r\n    align-items: center;\r\n    justify-content: center;\n}\r\n", ""]);
 
 // exports
 
@@ -3183,24 +3188,30 @@ var render = function () {
       _c(
         "section",
         { staticClass: "px-5 py-2" },
-        _vm._l(_vm.posts, function (post) {
-          return _c(
-            "article",
-            { key: "post-" + post.id, staticClass: "mb-5" },
-            [
-              _c("h1", { staticClass: "h3" }, [_vm._v(_vm._s(post.title))]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-small" }, [
-                _vm._v(_vm._s(post.created_at)),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-normal" }, [
-                _vm._v(_vm._s(post.text)),
-              ]),
-            ]
-          )
-        }),
-        0
+        [
+          !_vm.posts
+            ? _c("div", { staticClass: "loader-container" }, [_c("Loader")], 1)
+            : _vm._l(_vm.posts, function (post) {
+                return _c(
+                  "article",
+                  { key: "post-" + post.id, staticClass: "mb-5" },
+                  [
+                    _c("h1", { staticClass: "h3" }, [
+                      _vm._v(_vm._s(post.title)),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-small" }, [
+                      _vm._v(_vm._s(post.created_at)),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-normal" }, [
+                      _vm._v(_vm._s(post.text)),
+                    ]),
+                  ]
+                )
+              }),
+        ],
+        2
       ),
     ]),
   ])
