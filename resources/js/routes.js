@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Home from "./pages/Home";
+import Post from "./pages/Post";
 import About from "./pages/About";
 import Posts from "./pages/Posts";
 
@@ -13,6 +14,7 @@ const router = new VueRouter({
         { path: "/", name: "home", component: Home },
         { path: "/about", name: "about", component: About },
         { path: "/posts", name: "posts", component: Posts },
+        { path: "/posts/:slug", name: "post", component: Post },
     ],
     linkExactActiveClass: 'active',
 });

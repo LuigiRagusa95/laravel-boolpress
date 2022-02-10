@@ -8,6 +8,7 @@
                     <h1 class="h3">{{ post.title }}</h1>
                     <p class="text-small">{{ formatDate(post.created_at) }}</p>
                     <p class="text-normal">{{ post.text }}</p>
+                    <router-link :to="{name: 'post', params: { slug: post.slug }}">Read More...</router-link>
                 </article>
             </section>
             <section class="mb-3" v-if="posts">
@@ -81,15 +82,5 @@ export default {
 .text-normal {
     font-size: 16px;
     line-height: 24px;
-}
-.loader-container {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
 }
 </style>
