@@ -3,9 +3,10 @@
         <section class="mb-3 px-5 py-2">
             <div v-if="!post" class="loader-container"><Loader /></div>
             <article v-else class="mb-5">
-                <h1 class="h3">{{ post.title }}</h1>
-                <p class="text-small">{{ formatDate(post.created_at) }}</p>
-                <p class="text-normal">{{ post.text }}</p>
+                <h1 class="h3 m-0">{{ post.title }}</h1>
+                <span class="text-small">{{ formatDate(post.created_at) }}</span>
+                <Tags class="mb-2" :list="post.tags" />
+                <p class="text-normal mt-3">{{ post.text }}</p>
             </article>
         </section>
   </div>
@@ -14,9 +15,10 @@
 <script>
 import Axios from 'axios';
 import moment from 'moment';
+import Tags from '../components/Tags.vue';
 import Loader from '../components/Loader.vue';
 export default {
-    components: { Loader },
+    components: { Loader, Tags },
     name: 'Post',
     data() {
         return {
@@ -30,6 +32,7 @@ export default {
         getPost() {
             Axios.get(`http://127.0.0.1:8000/api/posts/${this.$route.params.slug}`)
                 .then(res => {
+                    console.log(res.data);
                     this.post = res.data;
             })
         },
