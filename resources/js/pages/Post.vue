@@ -32,9 +32,13 @@ export default {
         getPost() {
             Axios.get(`http://127.0.0.1:8000/api/posts/${this.$route.params.slug}`)
                 .then(res => {
-                    console.log(res.data);
-                    this.post = res.data;
-            })
+                    if (res.data.empty) {
+                         this.$router.push({name: 'empty'})
+                    } else {
+                        this.post = res.data
+                    }
+                    
+            }).catch(err => console.log(err));
         },
         formatDate(date) {
             return moment(new Date(date).getTime()).fromNow();
