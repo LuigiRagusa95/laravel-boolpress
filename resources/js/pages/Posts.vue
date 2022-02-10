@@ -4,12 +4,7 @@
             <h1 class="mt-2">Posts</h1>
             <section class="mb-3 px-5 py-2">
                 <div v-if="!posts" class="loader-container"><Loader /></div>
-                <article
-                    v-else
-                    class="mb-5"
-                    v-for="post in posts"
-                    :key="`post-${post.id}`"
-                >
+                <article v-else class="mb-5" v-for="post in posts" :key="`post-${post.id}`" >
                     <h1 class="h3">{{ post.title }}</h1>
                     <p class="text-small">{{ formatDate(post.created_at) }}</p>
                     <p class="text-normal">{{ post.text }}</p>
@@ -23,16 +18,9 @@
                 >
                     Prev
                 </button>
-                <button
-                    class="btn mr-2"
-                    :key="`page-${i}`"
-                    v-for="i in pagination.last"
+                <button class="btn mr-2" :key="`page-${i}`" v-for="i in pagination.last" 
                     @click="getPosts((pagination.current = i))"
-                    :class="
-                        pagination.current === i
-                            ? 'btn-primary'
-                            : 'btn-primary disabled'
-                    "
+                    :class=" pagination.current === i ? 'btn-primary' : 'btn-primary disabled' " 
                 >
                     {{ i }}
                 </button>
@@ -56,7 +44,7 @@ import Loader from "../components/Loader.vue";
 
 export default {
     components: { Loader },
-    name: "App",
+    name: "Posts",
     data() {
         return {
             posts: null,
