@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="{{ route('admin.posts.store') }}" method="post" autocomplete="off">
+            <form action="{{ route('admin.posts.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-1">
                     <label class="form-label" for="title"></label>
@@ -43,6 +43,13 @@
                         <label for="tag-{{$loop->iteration}}">{{ $tag->name }}</label>
                     </span>
                     @endforeach
+                </div>
+                <div class="mb-1">
+                    <label class="form-label" for="cover"></label>
+                    <input class="form-control" type="file" name="cover" id="cover">
+                    @error('cover')
+                    <div class="d-flex text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mt-3"><button type="submit" class="btn btn-primary">Create</button></div>
             </form>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
+use App\Tag;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -30,6 +31,11 @@ class PostController extends Controller
     {
         $request->validate($this->rules());
         $data = $request->all();
+
+        if (array_key_exists('cover', $data)) {
+            $data['cover'] = Storage::put('uploads/', $data['cover']);
+        }
+
         $post = new Post();
 
         $slug_retrived = Str::slug($data['title'], '-');
@@ -114,7 +120,8 @@ class PostController extends Controller
             'title' => 'required|max:100',
             'text' => 'required',
             'category_id' => 'nullable',
-            'tags' => 'nullable|exists:tags,id'
+            'tags' => 'nullable|exists:tags,id',
+            'cover' => 'nullable|file|mimes:png,jpeg'
         ];
     }
 }

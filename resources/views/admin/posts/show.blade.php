@@ -22,7 +22,14 @@
                     @else <p>No tags for this post</p>
                     @endif
                 </div>
-                <p class="d-flex mt-3">{{ $post->text }}</p>
+                <div class="row mb-5">
+                    <p class="{{ $post->cover ? 'col-md-6' : 'col' }}">{{ $post->text }}</p>
+                    @if ($post->cover)
+                        <div class="col md-6">
+                            <img class="img-fluid" src="{{ asset('storage/'. $post->cover)}} " alt=" {{$post->title}} ">
+                        </div>
+                    @endif
+                </div>
                 <p class="d-flex mt-3">
                     @if ($post->category_id)
                     <a class href="{{ route('admin.categories.show', $post->category->id) }}">{{$post->category->name
