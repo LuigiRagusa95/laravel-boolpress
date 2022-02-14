@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(3);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(3);
         return response()->json($posts);
     }
 
@@ -20,6 +20,8 @@ class PostController extends Controller
 
         if (!$post) {
             $post['empty'] = true;
+        } elseif ($post->cover) {
+            $post->cover = url('storage/' . $post->cover);
         }
         return response()->json($post);
     }

@@ -2114,6 +2114,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -25413,7 +25414,7 @@ var render = function () {
         ? _c("div", { staticClass: "loader-container" }, [_c("Loader")], 1)
         : _c(
             "article",
-            { staticClass: "mb-5" },
+            { staticClass: "d-flex flex-column mb-5" },
             [
               _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
                 _c(
@@ -25455,6 +25456,15 @@ var render = function () {
                   _vm._v(_vm._s(_vm.post.title)),
                 ]),
               ]),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid",
+                attrs: {
+                  width: "300",
+                  src: _vm.post.cover,
+                  alt: _vm.post.title,
+                },
+              }),
               _vm._v(" "),
               _c("span", { staticClass: "text-small" }, [
                 _vm._v(_vm._s(_vm.formatDate(_vm.post.created_at))),
