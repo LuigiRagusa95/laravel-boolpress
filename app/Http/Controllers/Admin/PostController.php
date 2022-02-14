@@ -83,6 +83,13 @@ class PostController extends Controller
         $data = $request->all();
         $post = Post::find($id);
 
+        if (array_key_exists('cover', $data)) {
+            if ($post->cover) {
+                Storage::delete($post->cover);
+            }
+            $data['cover'] = Storage::put('uploads', $data['cover']);
+        }
+
         if ($data['title'] != $post->title) {
             $slug_retrived = Str::slug($data['title'], '-');
             $slug_base = $slug_retrived;

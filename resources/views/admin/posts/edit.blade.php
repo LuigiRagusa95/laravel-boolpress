@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="{{ route('admin.posts.update', $post->id) }}" method="post" autocomplete="off">
+            <form action="{{ route('admin.posts.update', $post->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="mb-1">
@@ -49,6 +49,16 @@
                         <label for="tag-{{$loop->iteration}}">{{ $tag->name }}</label>
                     </span>
                     @endforeach
+                </div>
+                <div class="mb-1">
+                    @if ($post->cover)
+                    <img width="300px" class="img-fluid mb-3" src="{{asset('storage/'.$post->cover)}}" alt="{{$post->title}}">
+                    @endif
+                    <label class="form-label" for="cover"></label>
+                    <input class="form-control" type="file" name="cover" id="cover">
+                    @error('cover')
+                    <div class="d-flex text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mt-3"><button type="submit" class="btn btn-primary">Update</button></div>
             </form>
