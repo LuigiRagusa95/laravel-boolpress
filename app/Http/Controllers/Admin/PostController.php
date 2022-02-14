@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        $posts = Post::paginate(5);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(5);
         return view('admin.posts.index', compact('posts', 'tags'));
     }
 
@@ -118,7 +118,12 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        if ($post->cover) {
+            Storage::delete($post->cover);
+        }
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('deleted', $post->id);
     }
 
     private function rules()

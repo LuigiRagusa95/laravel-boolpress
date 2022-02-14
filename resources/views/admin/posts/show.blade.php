@@ -10,7 +10,12 @@
                     <span class="position-relative">{{ $post->created_at->diffForHumans() }}</span>
                     <span class="position-relative mb-2 mx-1 font-weight-bold">.</span>
                     <span class="d-flex position-relative">
-                        <a class="link" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+                        <a class="btn btn-primary btn-sm mr-2" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+                        <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit"> Delete</button>
+                        </form>
                     </span>
                 </small>
                 <div class="d-block mt-3">
