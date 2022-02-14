@@ -41719,7 +41719,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Post__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Post */ "./resources/js/pages/Post.vue");
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/About */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Posts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Posts */ "./resources/js/pages/Posts.vue");
-/* harmony import */ var _pages_Empty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Empty */ "./resources/js/pages/Empty.vue");
+/* harmony import */ var _pages_Empty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Empty */ "./resources/js/pages/Empty.vue");
 
 
 
@@ -41749,7 +41749,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: "*",
     name: "empty",
-    component: _pages_Empty__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _pages_Empty__WEBPACK_IMPORTED_MODULE_6__["default"]
   }],
   linkExactActiveClass: 'active'
 });
